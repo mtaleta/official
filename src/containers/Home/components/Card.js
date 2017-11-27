@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
+import './Card.less';
+import FontAwesome from 'react-fontawesome';
 
 export default class Card extends Component {
   static PropType = {
@@ -18,14 +20,29 @@ export default class Card extends Component {
       demoUrl,
       repoUrl
     } = this.props;
+    const bgStyle = {
+      backgroundImage: `URL("${img}")`
+    };
     return (
-      <div>
-        <div>{name}</div>
-        <div>{description}</div>
-        <img src={img} alt={name} />
-        <a href={demoUrl}>Demo</a>
-        <a>{demoUrl}</a>
-        <a>{repoUrl}</a>
+      <div className="card">
+        <div title="Demo" className="bgimg" style={bgStyle} />
+        {/* <img src={img} alt={name} /> */}
+        <div className="buttons">
+          <a title="Github" href={demoUrl} rel="noopener noreferrer" target="_blank">
+            <div className="circle demo">
+              <FontAwesome name="laptop" />
+            </div>
+          </a>
+          <a href={repoUrl} rel="noopener noreferrer" target="_blank">
+            <div className="circle repo">
+              <FontAwesome name="github-alt" />
+            </div>
+          </a>
+        </div>
+        <div className="cardInfo">
+          <div className="title">{name}</div>
+          <div className="des">{description}</div>
+        </div>
       </div>
     );
   }
